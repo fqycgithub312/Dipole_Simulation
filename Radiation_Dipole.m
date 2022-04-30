@@ -1,23 +1,37 @@
 %date:2020.2.13     Email:3126169332@qq.com 
-%°ë²¨Å¼¼«×ÓµÄ·øÉä·ÂÕæ
-%±¾ÊµÑéÖ÷ÒªÊÇÎªÁËÕ¹ÏÖÅ¼¼«×ÓµÄ·øÉäÌØµã£¬ºÜ¶àµÄ²ÎÊıÉè¶¨Å¼¾¡Á¿¼òµ¥£¬È¡Öµ¼ò½à
+%åŠæ³¢å¶æå­çš„è¾å°„ä»¿çœŸ
+%æœ¬å®éªŒä¸»è¦æ˜¯ä¸ºäº†å±•ç°å¶æå­çš„è¾å°„ç‰¹ç‚¹ï¼Œå¾ˆå¤šçš„å‚æ•°è®¾å®šå¶å°½é‡ç®€å•ï¼Œå–å€¼ç®€æ´
 theta0=linspace(0,2*pi,100);
 phi0=linspace(0,2*pi,200);
 [theta,phi]=meshgrid(theta0,phi0);
-F_3D=sin(theta);%ÈıÎ¬·½ÏòÍ¼º¯Êı
+% F_3D=sin(theta);%ä¸‰ç»´æ–¹å‘å›¾å‡½æ•°ï¼Œç”µåŸºæœ¬æŒ¯å­æ–¹å‘å›¾
+F_3D=cos(0.5*pi*cos(theta))./sin(theta);%ä¸‰ç»´æ–¹å‘å›¾å‡½æ•°ï¼ŒåŠæ³¢å¶æå­æ–¹å‘å›¾
 [x,y,z]=sph2cart(phi,0.5*pi-theta,F_3D);
-figure(1);%ÈıÎ¬·½ÏòÍ¼»æÖÆ
+figure(1);%ä¸‰ç»´æ–¹å‘å›¾ç»˜åˆ¶
 mesh(x,y,z);
 xlabel('x');ylabel('y');zlabel('z');
 title('3D Radiation Pattern of Dipole');
 
-figure(2);%¶şÎ¬·½ÏòÍ¼»æÖÆ
-F_2D=sin(theta0);%¶şÎ¬·½ÏòÍ¼º¯Êı
-polarplot(theta0,abs(F_2D));%¼«×ø±êĞÎÊ½·½ÏòÍ¼
+figure(2);%äºŒç»´æ–¹å‘å›¾ç»˜åˆ¶
+F_2D=cos(0.5*pi*cos(theta0))./sin(theta0);%2ç»´æ–¹å‘å›¾å‡½æ•°ï¼ŒåŠæ³¢å¶æå­æ–¹å‘å›¾
+polarplot(theta0,abs(F_2D));%æåæ ‡å½¢å¼æ–¹å‘å›¾
 title('2D Radiation Pattern of Dipole');
 pax=gca;
-pax.ThetaDir = 'clockwise';		   % °´Ë³Ê±Õë·½Ê½µİÔö
-pax.ThetaZeroLocation = 'top';     % ½«0¶È·ÅÔÚ¶¥²¿  
+pax.ThetaDir = 'clockwise';		   % æŒ‰é¡ºæ—¶é’ˆæ–¹å¼é€’å¢
+pax.ThetaZeroLocation = 'top';     % å°†0åº¦æ”¾åœ¨é¡¶éƒ¨  
+
+figure(3);%ä¸Šé¢çš„ä¸¤å¼ å›¾æ±‡æ€»åœ¨ä¸€èµ·
+subplot(121)
+mesh(x,y,z);
+xlabel('x');ylabel('y');zlabel('z');
+title('3D Radiation Pattern of Dipole');
+
+subplot(122);
+polarplot(theta0,abs(F_2D));%æåæ ‡å½¢å¼æ–¹å‘å›¾
+title('2D Radiation Pattern of Dipole');
+pax=gca;
+pax.ThetaDir = 'clockwise';		   % æŒ‰é¡ºæ—¶é’ˆæ–¹å¼é€’å¢
+pax.ThetaZeroLocation = 'top';     % å°†0åº¦æ”¾åœ¨é¡¶éƒ¨  
 
 
 
